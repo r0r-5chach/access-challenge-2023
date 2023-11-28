@@ -2,6 +2,8 @@ package xyz.r0r5chach.api.patient;
 
 import java.time.LocalDate;
 
+import org.bson.Document;
+
 public class Period {
     private LocalDate start, end;
 
@@ -24,5 +26,11 @@ public class Period {
 
     public LocalDate getEnd() {
         return end;
+    }
+
+    public Document toDoc() {
+        return new Document()
+            .append("start", start)
+            .append("end", end);        
     }
 }

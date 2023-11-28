@@ -1,5 +1,10 @@
 package xyz.r0r5chach.api.patient.telecom;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bson.Document;
+
 import xyz.r0r5chach.api.generic.IdentifiedAttribute;
 import xyz.r0r5chach.api.patient.Period;
 
@@ -23,5 +28,24 @@ public class Telecom extends IdentifiedAttribute {
     }
     public TelecomUseType getUse() {
         return use;
+    }
+
+    public Document toDoc() {
+        return new Document()
+            .append("value", value)
+            .append("system", system.toString())
+            .append("use", use.toString())
+            .append("period", period.toDoc())
+            .append("id", id);
+    }
+
+    public static List<Document> listToDoc(List<Telecom> list) {
+        List<Document> out = new ArrayList<>();
+
+        for (Telecom item : list) {
+            out.add(item.toDoc());
+        }
+
+        return out;
     }
 }

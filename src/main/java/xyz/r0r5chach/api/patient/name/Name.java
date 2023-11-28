@@ -1,6 +1,9 @@
 package xyz.r0r5chach.api.patient.name;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.bson.Document;
 
 import xyz.r0r5chach.api.generic.IdentifiedAttribute;
 import xyz.r0r5chach.api.patient.Period;
@@ -36,5 +39,23 @@ public class Name extends IdentifiedAttribute {
         return suffix;
     }
 
-    
+    public Document toDoc() {
+        return new Document()
+            .append("id", id)
+            .append("period", period)
+            .append("use", use.toString())
+            .append("given", given)
+            .append("prefix", prefix)
+            .append("suffix", suffix);
+    }
+
+    public static List<Document> listToDoc(List<Name> list) {
+        List<Document> out = new ArrayList<>();
+
+        for (Name item : list) {
+            out.add(item.toDoc());
+        }
+
+        return out;
+    }
 }

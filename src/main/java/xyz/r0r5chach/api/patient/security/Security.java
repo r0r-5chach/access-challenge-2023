@@ -1,5 +1,7 @@
 package xyz.r0r5chach.api.patient.security;
 
+import org.bson.Document;
+
 public class Security {
     private String system;
     private SecurityCode code;
@@ -19,5 +21,12 @@ public class Security {
     }
     public SecurityDisplay getDisplay() {
         return display;
+    }
+
+    public Document toDoc() {
+        return new Document()
+            .append("system", system)
+            .append("code", code.toString())
+            .append("display", display.toString());
     }
 }

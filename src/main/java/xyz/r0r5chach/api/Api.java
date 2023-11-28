@@ -15,6 +15,7 @@ import org.bson.Document;
 import xyz.r0r5chach.api.patient.Patient;
 import xyz.r0r5chach.api.patient.PatientList;
 import xyz.r0r5chach.api.patient.PatientUpdate;
+import xyz.r0r5chach.api.patient.search.SearchRequest;
 
 public class Api {
     private final String baseUrl;
@@ -38,17 +39,23 @@ public class Api {
     }
 
     public void updatePatient(String id, PatientUpdate update) {
-        //TODO: Write request to parse update and request using PATCH
+        String endpoint = baseUrl + "/Patient/" + id;
+
+        Builder req = createRequest(endpoint, true);
+        req.method("PATCH", BodyPublishers.ofString(update.toJson()));    
     }
 
-    public void searchPatient(Patient patient) {
-        //TODO: Write request to search patient GET
+    public PatientList searchPatient(SearchRequest patient) {
+        String endpoint = baseUrl + "/Patient/?" + patient.toParamsString();
+        Document res = getRequest(endpoint);
+
+        return new PatientList(res);
     }
 
-    private Builder createRequest(String endpoint) {
+    private Builder createRequest(String endpoint, boolean patch) {
         return HttpRequest.newBuilder()
             .uri(URI.create(endpoint))
-            .headers(generateHeaders());
+            .headers(generateHeaders(patch));
     }
 
     private String tryRequest(Builder req) {
@@ -61,7 +68,7 @@ public class Api {
     }
 
     private Document getRequest(String endpoint) {
-        Builder req = createRequest(endpoint);
+        Builder req = createRequest(endpoint, false);
         req.method("GET", BodyPublishers.noBody());
 
         Document res = parse(tryRequest(req));
@@ -77,10 +84,19 @@ public class Api {
         };
     }
 
-    private String[] generateHeaders() {
-        String[] headers = new String[]
-            {"accept", "application/fhir+json",
-             "nhsd-end-user-organisation-ods", "Y12345"};
+    private String[] generateHeaders(boolean patch) {
+        String[] headers;
+        if (patch) {
+            headers = new String[]
+                {"accept", "application/fhir+json",
+                "content-type", "application/json-patch+json",
+                "nhsd-end-user-organisation-ods", "Y12345"};
+        }
+        else {
+            headers = new String[]
+                {"accept", "application/fhir+json",
+                "nhsd-end-user-organisation-ods", "Y12345"};
+        }
 
         return headers;
     }

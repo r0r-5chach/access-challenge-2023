@@ -7,19 +7,35 @@
     <meta name="author" content="r0r5chach">
 
     <title>${title}</title>
-    <link rel="stylesheet" href="/${style}.css" media = "screen">
-    <link rel="stylesheet" href="/styles/mobile/${style}.css" media ="screen and (max-width:800px)">
+    <link rel="stylesheet" href="/${style}.css" media = "screen" />
+    <link rel="stylesheet" href="/${style}.css" media ="screen and (max-width:800px)" />
+
+    <!-- Custom fonts for this template-->
+    <link href="/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet" />
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
 </head>
-<body id="clicked">
-    <header>
-        <img src="/images/logo.png"/>
-    </header>
-        <#include '${content}'>
-    <footer>
+<body id="page-top">
+    <#include '${content}'>
+    <#--  <footer>
         <a href="/">
-            <img src="/images/logo.png"/>
-            <p>&copy;nhs, Deny Solutions ${date}</p>
+            <p>&copy;r0r5chach 2023</p>
         </a>
-    </footer>
+    </footer>  -->
+<script src="vendor/jquery/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

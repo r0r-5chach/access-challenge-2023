@@ -151,4 +151,21 @@ public class Patient {
     public void setGeneralPractitioners(List<GeneralPractitioner> generalPractitioners) {
         this.generalPractitioners = generalPractitioners;
     }
+
+    public Document toDoc() {
+        return new Document()
+        .append("id", id)
+        .append("identifiers", Identifier.listToDoc(identifiers))
+        .append("meta", meta.toDoc())
+        .append("name", Name.listToDoc(names))
+        .append("gender", gender.toString())
+        .append("birthdate", birthDate.toString())
+        .append("deceasedDatetime", deceasedDateTime.toString())
+        .append("multipleBirthInteger", multipleBirthInteger)
+        .append("address", Address.listToDoc(addresses))
+        .append("telecom", Telecom.listToDoc(telecoms))
+        .append("contacts", Contact.listToDoc(contacts))
+        .append("relationship", Relationship.listToDoc(relationships))
+        .append("generalPractitioners", GeneralPractitioner.listToDoc(generalPractitioners));
+    }
 }

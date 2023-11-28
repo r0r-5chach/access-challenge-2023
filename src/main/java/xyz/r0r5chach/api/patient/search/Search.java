@@ -3,6 +3,8 @@ package xyz.r0r5chach.api.patient.search;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.bson.Document;
+
 public class Search {
     private String resourceType, type;
     private LocalDateTime timestamp;
@@ -29,5 +31,14 @@ public class Search {
     }
     public List<Entry> getEntries() {
         return entries;
+    }
+
+    public Document toDoc() {
+        return new Document()
+            .append("resourceType", resourceType)
+            .append("type", type)
+            .append("timestamp", timestamp.toString())
+            .append("total", total)
+            .append("entry", Entry.listToDoc(entries));
     }
 }

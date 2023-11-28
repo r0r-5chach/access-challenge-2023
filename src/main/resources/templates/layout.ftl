@@ -7,8 +7,8 @@
     <meta name="author" content="r0r5chach">
 
     <title>${title}</title>
-    <link rel="stylesheet" href="/${style}.css" media = "screen" />
-    <link rel="stylesheet" href="/${style}.css" media ="screen and (max-width:800px)" />
+    <link rel="stylesheet" href="/styles.css" media = "screen" />
+    <link rel="stylesheet" href="/styles.css" media ="screen and (max-width:800px)" />
 
     <!-- Custom fonts for this template-->
     <link href="/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -27,14 +27,14 @@
             <p>&copy;r0r5chach 2023</p>
         </a>
     </footer>  -->
-<script src="vendor/jquery/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="/js/sb-admin-2.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

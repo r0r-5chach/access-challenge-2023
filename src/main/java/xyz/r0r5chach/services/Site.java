@@ -1,5 +1,6 @@
 package xyz.r0r5chach.services;
 
+import static spark.Spark.halt;
 import static spark.Spark.staticFiles;
 
 import java.io.IOException;
@@ -8,11 +9,12 @@ import java.io.Writer;
 import java.time.LocalDate;
 import java.util.Map;
 
+import org.eclipse.jetty.client.api.Request;
+
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
 import spark.Response;
 import xyz.r0r5chach.services.error.Error;
-import xyz.r0r5chach.services.user.User;
 
 public class Site {
     public static Configuration templateEngine;
@@ -42,9 +44,15 @@ public class Site {
         return null;
     }
 
+    public static void authenticate(Request req, Response res) {
+        if (!sessionVars.containsKey("username")) {
+            halt(401);
+        }
+    }
+
     private static void initPaths() {
         Error.routes();
-        User.routes();
+        Login.routes();
         Admin.routes();
     }
 }

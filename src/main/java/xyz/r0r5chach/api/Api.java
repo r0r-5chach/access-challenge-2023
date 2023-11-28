@@ -15,7 +15,7 @@ import org.bson.Document;
 import xyz.r0r5chach.api.patient.Patient;
 import xyz.r0r5chach.api.patient.PatientList;
 import xyz.r0r5chach.api.patient.PatientUpdate;
-import xyz.r0r5chach.api.patient.search.SearchRequest;
+import xyz.r0r5chach.api.patient.search.Search;
 
 public class Api {
     private final String baseUrl;
@@ -45,7 +45,7 @@ public class Api {
         req.method("PATCH", BodyPublishers.ofString(update.toJson()));    
     }
 
-    public PatientList searchPatient(SearchRequest patient) {
+    public PatientList searchPatient(Search patient) {
         String endpoint = baseUrl + "/Patient/?" + patient.toParamsString();
         Document res = getRequest(endpoint);
 

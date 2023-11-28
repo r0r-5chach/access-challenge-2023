@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.bson.Document;
 
+import xyz.r0r5chach.api.patient.search.Entry;
+
 public class PatientList {
     private List<Patient> list;
 
@@ -13,7 +15,13 @@ public class PatientList {
     }
 
     public PatientList(Document res) {
-        //TODO: Destructure response into Patients, add to list
+        this();
+        List<Entry> entry = res.getList("entry", Entry.class, null);
+
+        for (Entry item : entry) {
+            list.add(item.getResource());
+        }
+
     }
 
     public void add(Patient patient) {

@@ -22,7 +22,6 @@ public class Login {
     private static String getLogin(Request req, Response res) {
         Map<String,Object> model = new HashMap<>();
         model.put("title", "Login");
-        User.routes();
         Site.renderLayout("login.ftl", model, res);
         return null;
     }

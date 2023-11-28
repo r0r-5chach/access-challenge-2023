@@ -16,10 +16,12 @@ public class PatientList {
 
     public PatientList(Document res) {
         this();
-        List<Entry> entry = res.getList("entry", Entry.class, null);
+        List<Entry> entry = res.getList("entry", Entry.class);
 
-        for (Entry item : entry) {
-            list.add(item.getResource());
+        if (entry != null) {
+            for (Entry item : entry) {
+                list.add(item.getResource());
+            }
         }
 
     }

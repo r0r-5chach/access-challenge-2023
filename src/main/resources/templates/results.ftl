@@ -1,7 +1,4 @@
-<h1>Hello!</h1>
-
-
-<#--  <#list ${results}>
+<#list ${results}>
     <ul>
         <#items as patient>
             <li>
@@ -11,4 +8,4 @@
             </li>
         </#items>
     </ul>
-</#list>  -->
+</#list>

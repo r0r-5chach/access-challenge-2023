@@ -96,15 +96,35 @@ public class Search {
            .append("&_max_results=").append(urlEncodeValue(String.valueOf(maxResults)))
            .append("&family=").append(urlEncodeValue(family))
            .append(urlEncodeList("given", given))
-           .append("&gender=").append(urlEncodeValue(gender.toString()))
-           .append(urlEncodeDateList("birthdate", birthDate))
-           .append(urlEncodeDateList("death-date", deathDate))
-           .append("&address-postalcode=").append(urlEncodeValue(addressPostalCode))
-           .append("&general-practitioner=").append(urlEncodeValue(generalPractitioner))
-           .append("&email=").append(urlEncodeValue(email))
-           .append("&phone=").append(phone);
+           .append(urlEncodeDateList("birthdate", birthDate));
 
-        return out.toString();
+           if (gender != null) {
+                out.append("&gender=").append(urlEncodeValue(gender.toString()));
+           }
+
+           if (deathDate != null) {
+                out.append(urlEncodeDateList("death-date", deathDate));
+           }
+
+           if (addressPostalCode != null) {
+                out.append("&address-postalcode=").append(urlEncodeValue(addressPostalCode));
+           }
+
+           if (generalPractitioner != null) {
+                out.append("&general-practitioner=").append(urlEncodeValue(generalPractitioner));
+           }
+
+           if (email != null) {
+                out.append("&email=").append(urlEncodeValue(email));
+           }
+
+           if (phone != null) {
+                out.append("&phone=").append(urlEncodeValue(phone));
+           }
+
+           
+
+           return out.toString();
     }
 
     private String urlEncodeValue(String value) {

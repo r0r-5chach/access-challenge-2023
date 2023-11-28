@@ -70,8 +70,9 @@ public class Api {
     private Document getRequest(String endpoint) {
         Builder req = createRequest(endpoint, false);
         req.method("GET", BodyPublishers.noBody());
-
-        Document res = parse(tryRequest(req));
+        String json = tryRequest(req);
+        System.out.println(json);
+        Document res = parse(json);
 
         return res;
     }

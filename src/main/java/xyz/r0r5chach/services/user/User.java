@@ -27,7 +27,7 @@ public class User {
         path("/user", () -> {
             get("/dash", User::getDash);
 
-            post("/results", User::postResult);
+            post("/results", User::postResults);
 
             post("/diffs/:id", User::postDiffs);
 
@@ -51,23 +51,18 @@ public class User {
         Site.renderLayout("dash.ftl", model, res);
         return null;
     }
-
-    private static String postResult(Request req, Response res) {
-        Map<String,Object> model = new HashMap<>();
-        model.put("title", "Dashboard");
-        Site.renderLayout("results.ftl", model, res);
-        return null;
-    }
-
     private static String postResults(Request req, Response res) {
         List<String> names = Arrays.asList(req.queryParams("searchTerms").split(" "));
         Search query = new Search();
         query.setFuzzyMatch(true);
-        query.setFamily(pop(names, names.size()));
+        query.setFamily(pop(names, names.size()-1));
         
-        for (String name : names) {
-            query.addGiven(name);
+        if (names.size() > 0) {
+            for (String name : names) {
+                query.addGiven(name);
+            }
         }
+
         PatientList results = api.searchPatient(query);
         Map<String,Object> model = new HashMap<>();
         List<Map<String,Object>> list = new ArrayList<>();
@@ -101,7 +96,6 @@ public class User {
 
     private static String pop(List<String> list, int index) {
         String out = list.get(index);
-        list.remove(index);
 
         return out;
     }
